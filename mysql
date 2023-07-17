@@ -1,0 +1,68 @@
+##Creating the Customers Table:##
+
+CREATE TABLE Customers (
+  customer_id INT AUTO_INCREMENT PRIMARY KEY,
+  first_name VARCHAR(50),
+  last_name VARCHAR(50),
+  address VARCHAR(100),
+  phone VARCHAR(20),
+  email VARCHAR(100)
+);
+
+##Creating the Vehicles Table..##
+
+CREATE TABLE Vehicles (
+  vehicle_id INT AUTO_INCREMENT PRIMARY KEY,
+  brand VARCHAR(50),
+  model VARCHAR(50),
+  year INT,
+  fuel_type VARCHAR(20),
+  price DECIMAL(10, 2),
+  availability ENUM('available', 'rented')
+);
+
+##Creating the Rentals Table:##
+
+CREATE TABLE Rentals (
+  rental_id INT AUTO_INCREMENT PRIMARY KEY,
+  customer_id INT,
+  vehicle_id INT,
+  start_date DATE,
+  end_date DATE,
+  total_price DECIMAL(10, 2),
+  FOREIGN KEY (customer_id) REFERENCES Customers(customer_id),
+  FOREIGN KEY (vehicle_id) REFERENCES Vehicles(vehicle_id)
+);
+
+##Add a Customer##
+
+INSERT INTO Customers (first_name, last_name, address, phone, email)
+VALUES ('Serdar ', 'muslu', 'Dublin City', '83423', 'srdr@serdar.com');
+
+##Add a Vehicle##
+
+INSERT INTO Vehicles (brand, model, year, fuel_type, price, availability)
+VALUES ('Mercedes', 'Amg', 2023, 'Gasoline', 150.00, 'available');
+
+##Creating a Rental##
+
+INSERT INTO Rentals (customer_id, vehicle_id, start_date, end_date, total_price)
+VALUES (1, 1, '2023-02-01', '2023-02-05', 600.00);
+
+#Listing Customers and Vehicles##
+
+SELECT * FROM Customers;
+SELECT * FROM Vehicles;
+
+##Listing Available Vehicle##
+
+SELECT * FROM Vehicles WHERE availability = 'available';
+
+##All the Best##
+##Serdar##
+
+
+
+
+
+
